@@ -78,6 +78,7 @@
 			</div>
 			<div class="comment-form">
 				<%= form_for [@book, @book_comment] do |f| %>
+				<%= render 'layouts/error_messages', model: f.object %>
 					<%= f.text_area :comment, rows:'5' %>
 					<%= f.submit 'Create Comment' %>
 				<% end %>
