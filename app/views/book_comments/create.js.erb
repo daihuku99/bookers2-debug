@@ -1,0 +1,4 @@
+$('#text').before('<tr id="book_comments_<%= @book_comment.id %>"></tr>')
+$('#book_comments_<%= @book_comment.id %>').html("<%= j(render 'book_comments/index', book_comment: @book_comment) %>");
+$('textarea').val('');
+$('#count').html("<%= j(render 'book_comments/count', book: @book) %>")
