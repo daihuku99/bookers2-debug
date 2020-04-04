@@ -1,0 +1,3 @@
+
+$('#book_comments_<%= @id %>').remove();
+$('#count').html("<%= j(render 'book_comments/count', book: @book ) %>")

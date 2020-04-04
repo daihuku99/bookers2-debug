@@ -34,26 +34,8 @@
 
 				<tbody>
 					<% @books.each do |book| %>
-					<tr>
-						<td>
-							<%= link_to(book.user) do %>
-							<%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no-image-mini.jpg" %>
-							<% end %>
-						</td>
-						<td><%= link_to book.title, book_path(book), class: "book_#{book.id}" %></td>
-						<td><%= book.body %></td>
-						<% if book.favorited_by?(current_user) %>
-							<td><%= link_to book_favorites_path(book), method: :delete do %>
-								<i class="fa fa-heart" aria-hidden="true" style="color: red;" ></i>
-								<h5><%= book.favorites.count %>いいね</h5>
-							<% end %></td>
-						<% else %>
-							<td><%= link_to book_favorites_path(book), method: :post do %>
-								<i class="fa fa-heart" aria-hidden="true"></i>
-								<h5><%= book.favorites.count %>いいね</h5>
-							<% end %></td>
-						<% end %>
-						<td><%= book.book_comments.count %>Comments</td>
+					<tr class="book_<%= book.id %>">
+						<%= render 'book', book: book %>
 					</tr>
 					<% end %>
 				</tbody>
