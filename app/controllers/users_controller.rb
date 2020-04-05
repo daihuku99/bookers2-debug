@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 	before_action :baria_user, only: [:update, :edit]
+  # geocoded_by :address
+  # after_validation :geocode
 
   def show
   	@user = User.find(params[:id])
   	@books = @user.books
   	@book_new = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+    results = Geocoder.search(@user.address)
+    @latlng = results.first.coordinates
   end
 
   def index
@@ -42,7 +46,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-  	params.require(:user).permit(:name, :introduction, :profile_image)
+  	params.require(:user).permit(:name, :introduction, :profile_image, :postcode, :address_city, :address_street, :address_building)
   end
 
   #url直接防止　メソッドを自己定義してbefore_actionで発動。
