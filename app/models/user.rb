@@ -3,10 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable,:validatable
 
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -64,6 +60,12 @@ class User < ApplicationRecord
   def address
     [address_city, address_street].compact.join(',')
   end
+
+  # after_create :thanks_email
+
+  # def send_thanks_email
+  #   ThanksMailer.thanks_email(self).deliver
+  # end
 
   # geocoded_by :address, latitude: :lat, longitude: :lng
 
