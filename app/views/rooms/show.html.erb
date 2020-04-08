@@ -1,9 +1,11 @@
 
 <h1><%= @user.name %>さんとチャット</h1>
 
-<input type="text" date-behavior="room_speaker" date-user="<%= current_user.id %>" data-room="<%= @room.id %>" >
+<input class="form-control" type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
 
-<div id="contents">
-	<%= render 'chat/contents', collection: @contents %>
+<div id="chats" >
+	<ul class="list-group">
+		<%= render 'chat/contents', collection: @contents %>
+	</ul>
 </div>
 
