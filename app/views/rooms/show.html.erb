@@ -1,0 +1,11 @@
+
+<h1><%= @user.name %>さんとチャット</h1>
+
+<input class="form-control" type="text" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
+
+<div id="chats" >
+	<ul class="list-group">
+		<%= render 'chat/contents', collection: @contents %>
+	</ul>
+</div>
+
