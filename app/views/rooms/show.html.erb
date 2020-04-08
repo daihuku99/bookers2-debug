@@ -1,0 +1,9 @@
+
+<h1><%= @user.name %>さんとチャット</h1>
+
+<input type="text" date-behavior="room_speaker" date-user="<%= current_user.id %>" data-room="<%= @room.id %>" >
+
+<div id="contents">
+	<%= render 'chat/contents', collection: @contents %>
+</div>
+

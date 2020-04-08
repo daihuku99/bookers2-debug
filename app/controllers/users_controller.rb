@@ -10,6 +10,12 @@ class UsersController < ApplicationController
   	@book_new = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
     results = Geocoder.search(@user.address)
     @latlng = results.first.coordinates
+    if user_signed_in?
+      @room = Room.new
+      @rooms = current_user.rooms
+      @user_room = UserRoom.where.not(user_id: current_user.id)
+      @user_room_id = @user_room.pluck(:room_id)
+    end
   end
 
   def index

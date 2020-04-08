@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   	sessions: 'users/sessions',
   	registrations: 'users/registrations'
   }
-  resources :users, only: [:show,:index,:edit,:update]
+  resources :users, only: [:show,:index,:edit,:update] do
+    resources :rooms, only: [:show, :create]
+  end
+
 
   resources :books do
   	resource :favorites, only: [:create, :destroy]
@@ -18,5 +21,6 @@ Rails.application.routes.draw do
   get 'follower/:id' => 'users#follower', as: 'follower'
   get 'following/:id' => 'users#following', as: 'following'
   get 'search' => 'searches#search'
+  resources :chats, only: [:show, :create]
 
 end

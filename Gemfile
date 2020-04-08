@@ -86,3 +86,7 @@ gem 'geocoder'
 gem 'execjs'
 
 gem 'dotenv-rails'
+
+gem 'pry-rails'
+
+gem 'jquery-turbolinks'

@@ -1,0 +1,12 @@
+<h1>
+	<% @users.each do |user| %>
+		<%= user.name %>さんとチャット
+	<% end %>
+</h1>
+
+<input type="text" date-behavior="room_speaker">
+
+<div id="contents">
+	<%= render 'contents', collection: @contents %>
+</div>
+
