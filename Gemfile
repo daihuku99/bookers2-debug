@@ -90,3 +90,5 @@ gem 'dotenv-rails'
 gem 'pry-rails'
 
 gem 'jquery-turbolinks'
+
+gem 'whenever', require: false
