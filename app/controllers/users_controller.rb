@@ -1,20 +1,20 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-	before_action :baria_user, only: [:update, :edit]
+  before_action :authenticate_user! #ログインしていないユーザーをルートパスへ飛ばす
+	before_action :baria_user, only: [:update, :edit] #current_userのみ使用できるアクション
   # geocoded_by :address
   # after_validation :geocode
 
   def show
   	@user = User.find(params[:id])
-  	@books = @user.books
+  	@books = @user.books #User.find(params[:id])のuser.idがついた@books
   	@book_new = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
-    results = Geocoder.search(@user.address)
-    @latlng = results.first.coordinates
-    if user_signed_in?
-      @room = Room.new
+    results = Geocoder.search(@user.address) #@user.addressで取得したuserの住所をGeocoderで緯度経度に変換
+    @latlng = results.first.coordinates #上で変換した数字を@latlngに代入
+    if user_signed_in? #チャットに関する記述
+      @room = Room.new #roomの新規作成
       @rooms = current_user.rooms
-      @user_room = UserRoom.where.not(user_id: current_user.id)
-      @user_room_id = @user_room.pluck(:room_id)
+      @user_room = UserRoom.where.not(user_id: current_user.id) #中間テーブルのUserRoomを通してcurrent_user以外のuser_idを取得
+      @user_room_id = @user_room.pluck(:room_id) #@user_room_idに上で取得した@user_roomのroom_idを配列にして代入
     end
   end
 
