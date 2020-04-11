@@ -11,9 +11,9 @@ class User < ApplicationRecord
   has_many :user_rooms
   has_many :rooms, through: :user_rooms
   has_many :chats, through: :user_rooms
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :following_user, through: :follower, source: :followed
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy #Relationshipモデルを通してfollower_idに紐づいたfollowerを取得する
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy #Relationshipモデルを通してfollowed_idに紐づいたfollowedを取得する
+  has_many :following_user, through: :follower, source: :followed #上で取得したfollowedを通じて、
   has_many :follower_user, through: :followed, source: :follower
   attachment :profile_image, destroy: false
 
