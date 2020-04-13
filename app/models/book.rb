@@ -8,8 +8,8 @@ class Book < ApplicationRecord
 	validates :title, presence: true, length: {maximum: 200 }
 	validates :body, presence: true, length: {maximum: 200 }
 
-	def favorited_by?(user)
-		favorites.where(user_id: user.id).exists?
+	def favorited_by?(user) #メソッド使用時に引数を使用するので引数を記述
+		favorites.where(user_id: user.id).exists? #user_idカラムにcurent_user_idが格納されているfavoriteが存在するかどうか
 	end
 
 	def Book.search(search, user_or_book, how_search)
